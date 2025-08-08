@@ -78,56 +78,47 @@ internal class Program
 
         Console.WriteLine("************************* Atividade 03 ************************");
 
-        Queue<Cliente> fila = new Queue<Cliente>();
+        // Criar a fila de atendimento
+        Queue<string> fila = new Queue<string>();
 
-        // Inserir clientes
-        fila.Enqueue(new Cliente("Ana Banana"));
-        fila.Enqueue(new Cliente("Bruno Roberto"));
-        fila.Enqueue(new Cliente("João Bananão"));
-        fila.Enqueue(new Cliente("Carla Josefa"));
-        fila.Enqueue(new Cliente("Marcos Tum Tum Sahur"));
+        // Inserir pelo menos 5 nomes de clientes
+        fila.Enqueue("Lula Presidente");
+        fila.Enqueue("Maria Antonella");
+        fila.Enqueue("Carlos Andrade");
+        fila.Enqueue("Ana Banana");
+        fila.Enqueue("Pedro ANdrade");
 
-        // Atender primeiro cliente
-        if (fila.Count > 0)
+        Console.WriteLine("Fila inicial:");
+        foreach (string cliente in fila)
         {
-            Cliente atendido = fila.Dequeue();
-            Console.WriteLine($"Cliente atendido: {atendido}");
+            Console.WriteLine(cliente);
         }
 
-        // Pesquisar cliente específico
-        string nomeProcurado = "João Bananão";
-        var listaRestante = fila.ToList();
-        int posicao = listaRestante.FindIndex(c =>
-            string.Equals(c?.Nome, nomeProcurado, StringComparison.OrdinalIgnoreCase));
+        // Atender (remover) o primeiro cliente e exibir o nome
+        string primeiroAtendido = fila.Dequeue();
+        Console.WriteLine($"\nAtendendo cliente: {primeiroAtendido}");
 
-        if (posicao != -1)
-            Console.WriteLine($"O cliente {nomeProcurado} está na posição {posicao + 1} da fila.");
+        // Pesquisar se um cliente específico está na fila e sua posição
+        _ = fila.Contains("Lula Presidente");
+
+        if (achou)
+            Console.WriteLine("\nNome Encontrado");
         else
-            Console.WriteLine($"O cliente {nomeProcurado} não está na fila.");
+            Console.WriteLine("\nO Nome não está na lista");
 
-        // Remover cliente específico (ex.: "Carla Josefa")
-        string primeiroFila = fila.Dequeue();
-        Console.WriteLine($"\n{primeiroFila} é o primeiro,e saiu da fila\n");
-
-        foreach (var pessoa in fila)
-        {
-            // Imprimir chave e valor do dicionário
-            Console.WriteLine(pessoa);
-        }
-
-        // Reconstruir a fila com os clientes restantes
-        fila = new Queue<Cliente>(listaRestante);
+        // Remover outro cliente da fila
+        string segundoAtendido = fila.Dequeue();
+        Console.WriteLine($"\nRemovendo cliente: {segundoAtendido}");
 
         // Exibir todos os clientes restantes
         Console.WriteLine("\nClientes restantes na fila:");
-        if (fila.Count > 0)
+        foreach (string cliente in fila)
         {
-            foreach (var cliente in fila)
-                Console.WriteLine(cliente);
+            Console.WriteLine(cliente);
         }
-        else
-        {
-            Console.WriteLine("Nenhum cliente restante na fila.");
-        }
+
+        Console.WriteLine("\nFim do programa.");
+
+        Console.WriteLine("************************* Atividade 04 ************************");
     }
 }
