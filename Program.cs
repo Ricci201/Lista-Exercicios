@@ -120,5 +120,31 @@ internal class Program
         Console.WriteLine("\nFim do programa.");
 
         Console.WriteLine("************************* Atividade 04 ************************");
+
+        Stack<string> historico = new Stack<string>();
+
+        historico.Push("www.google.com");
+        historico.Push("www.github.com");
+        historico.Push("www.stackoverflow.com");
+        historico.Push("www.microsoft.com");
+        historico.Push("www.reddit.com");
+
+        // Mostrando o próximo da pilha sem removê-lo
+        Console.WriteLine($"\nPágina atual: {historico.Peek()}");
+
+        string paginaAnterior = historico.Pop();
+        Console.WriteLine($"\nVoltando para a página: {paginaAnterior}");
+
+        bool visitou = historico.Contains("www.github.com");
+        if (visitou)
+            Console.WriteLine("\nA página foi visitada");
+        else
+            Console.WriteLine("\nA página não foi visitada");
+
+        Console.WriteLine("\nHistórico atual:");
+        foreach (string pagina in historico)
+        {
+            Console.WriteLine(pagina);
+        }
     }
 }
